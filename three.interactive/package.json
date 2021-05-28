@@ -1,0 +1,79 @@
+{
+  "_from": "git+https://github.com/markuslerner/THREE.Interactive.git",
+  "_id": "three.interactive@1.1.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/three.interactive",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/markuslerner/THREE.Interactive",
+    "rawSpec": "https://github.com/markuslerner/THREE.Interactive",
+    "saveSpec": "git+https://github.com/markuslerner/THREE.Interactive.git",
+    "fetchSpec": "https://github.com/markuslerner/THREE.Interactive.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git+https://github.com/markuslerner/THREE.Interactive.git#633cae8dde3e723317e6cbefbc4c7b64005ed4d4",
+  "_spec": "https://github.com/markuslerner/THREE.Interactive",
+  "_where": "D:\\learn\\three.js",
+  "author": {
+    "name": "Markus Lerner",
+    "email": "m@markuslerner.com",
+    "url": "https://www.markuslerner.com"
+  },
+  "bugs": {
+    "url": "https://github.com/markuslerner/THREE.Interactive/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "three": "^0.122.0"
+  },
+  "deprecated": false,
+  "description": "Fast and simple interaction manager for THREE.js",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-external-helpers": "^7.12.1",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^7.12.1",
+    "eslint-plugin-babel": "^5.3.1",
+    "http-server": "^0.12.3",
+    "rollup": "^2.32.1",
+    "rollup-plugin-babel": "^4.4.0"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "build",
+    "src"
+  ],
+  "homepage": "https://github.com/markuslerner/THREE.Interactive#readme",
+  "keywords": [
+    "threejs",
+    "interaction",
+    "events",
+    "event-system",
+    "mouse-events",
+    "touch-events"
+  ],
+  "license": "MIT",
+  "main": "./build/three.interactive.js",
+  "module": "./build/three.interactive.module.js",
+  "name": "three.interactive",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markuslerner/THREE.Interactive.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "examples": "http-server -c-1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.0"
+}
