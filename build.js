@@ -20,6 +20,8 @@ function main() {
 
     controls.zoomSpeed = 2.0;
     controls.panSpeed = 0.5;
+    controls.maxPolarAngle =  Math.PI * 0.5 - 0.01;
+    console.log(controls.maxPolarAngle)
     controls.update()
 
     scene.background = new THREE.Color('0xe0e0e0');
@@ -30,6 +32,23 @@ function main() {
     directionalLight.position.set(1, 1, 0).normalize();
     scene.add(directionalLight);
 
+    const planeSize = 25;
+    const textureLoader = new THREE.TextureLoader();
+    const texture = textureLoader.load('upload/grass1.jpg');
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.magFilter = THREE.NearestFilter;
+    const repeats = planeSize / 2;
+    texture.repeat.set(repeats, repeats);
+
+    const planeGeo = new THREE.PlaneGeometry(planeSize, planeSize);
+    const planeMat = new THREE.MeshPhongMaterial({
+        map: texture,
+        side: THREE.DoubleSide,
+    });
+    const mesh = new THREE.Mesh(planeGeo, planeMat);
+    mesh.rotation.x = Math.PI * 0.5;
+    scene.add(mesh);
 
     const colladaLoader = new ColladaLoader()
     colladaLoader.load('upload/uploads_files_969463_building_collection_dae.dae', function (builds) {
@@ -70,6 +89,7 @@ function main() {
     }
 
     renderer.domElement.addEventListener('click', onClick, false);
+    renderer.domElement.addEventListener('mousemove', onMouseMove, false);
 
     function onClick() {
         event.preventDefault();
@@ -85,6 +105,7 @@ function main() {
             cameraAnimate = true
 
             const build = intersects[0].object;
+
             lastBuildOnClick = build.name
             let buildScale = build.positionScale
 
@@ -121,6 +142,23 @@ function main() {
         }
     }
 
+    function onMouseMove(){
+        const mouse = new THREE.Vector2();
+        mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+        const raycaster = new THREE.Raycaster();
+        raycaster.setFromCamera( mouse, camera );
+        const intersects = raycaster.intersectObjects( scene.children, true );
+
+
+        if(intersects.length > 0 && intersects[0].object.name !== '' && !cameraAnimate) {
+            document.body.style.cursor = 'pointer'
+        } else {
+            document.body.style.cursor = 'default'
+        }
+    }
+
 
     requestAnimationFrame(render);
 }
@@ -130,9 +168,9 @@ main();
 function CameraPositionScale(name) {
     switch (name) {
         case 'Box01_ncl1_1':
-            return {x: 75, y: 20, z: -100}
+            return {x: 20, y: 20, z: -120}
         case 'Box01_ncl1_3':
-            return {x: 40, y: 20, z: 75}
+            return {x: 20, y: 20, z: 100}
         case 'Box01_ncl1_4':
             return {x: 20, y: 5, z: 75}
         case 'Box02':
